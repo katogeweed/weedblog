@@ -1,0 +1,55 @@
+
+
+
+# #雑草判別
+
+# from werkzeug.utils import secure_filename
+# from keras.models import Sequential, load_model
+# from keras.preprocessing import image
+# import numpy as np
+# import os
+
+
+# classes = ["ビロウドモウズイカ","エノコログサ","ヒメジョン","ヒメオドリコソウ","オオイヌノフグリ","オオキンケイギク","シロツメクサ","スギナ","タンポポ","ヤグルマギク"]
+# texts = ["ビロウドモウズイカの説明","エノコログサの説明","ヒメジョンの説明","ヒメオドリコソウの説明","オオイヌノフグリの説明","オオキンケイギクの説明","シロツメクサの説明","スギナの説明","タンポポの説明","ヤグルマギクの説明"]
+
+# image_size = 224
+
+# UPLOAD_FOLDER = "uploads"
+# ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+# def allowed_file(filename):
+#     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# model = load_model('../epoc30.h5',compile=False)#学習済みモデルをロード
+
+
+# @main.route('/judgement_result', methods=['GET', 'POST'])
+# def upload_file():
+#     if request.method == 'POST':
+#         if 'file' not in request.files:
+#             flash('ファイルがありません')
+#             return redirect(request.url)
+#         file = request.files['file']
+#         if file.filename == '':
+#             flash('ファイルがありません')
+#             return redirect(request.url)
+#         if file and allowed_file(file.filename):
+#             filename = secure_filename(file.filename)
+#             file.save(os.path.join(UPLOAD_FOLDER, filename))
+#             filepath = os.path.join(UPLOAD_FOLDER, filename)
+
+#             #受け取った画像を読み込み、np形式に変換
+#             img = image.load_img(filepath, color_mode='rgb', target_size=(image_size,image_size))
+#             img = image.img_to_array(img)
+#             data = np.array([img])
+#             #変換したデータをモデルに渡して予測する
+#             result = model.predict(data)[0]
+#             predicted = result.argmax()
+#             pred_answer = "この雑草は " + classes[predicted] + " です"
+#             pred_text = texts[predicted]
+            
+
+#             return render_template("index.html",answer=pred_answer,text=pred_text)
+
+#     return render_template("index.html",answer="")
