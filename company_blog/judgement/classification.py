@@ -16,7 +16,7 @@ texts = ["ビロウドモウズイカの説明","エノコログサの説明","�
 
 image_size = 224
 
-UPLOAD_FOLDER = r"E:\weedblog\company_blog\static\uploads"
+UPLOAD_FOLDER = r'C:\Users\katoryota\weedblog\company_blog\static\uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 
